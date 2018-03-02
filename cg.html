@@ -1,0 +1,152 @@
+﻿
+<!-- Fix and learn this:  https://www.reddit.com/r/dndnext/comments/7yeimv/modern_character_generation_tool_and_discussion/dugqddt/ -->
+<html>
+
+<head>
+	
+	<meta name="description" content="Inspiring, Balanced and Interesting D&D 5e Character Generator" />
+	<meta name="keywords" content="D&D, 5e, character builder, character generator, character creation, NPC, dungeons & dragons, inspiration, balanced, interesting, tool, Eupolemos" />
+	<meta name="author" content="Eupolemos" />
+
+	<title>Inspiring, Balanced and Interesting Character Generator</title>
+
+	<link rel="stylesheet" href="cg_stylesheet.css" type="text/css">
+
+	<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+	
+</head>
+
+<body>
+	<!-- comment -->
+	<!-- Character Sheet Intro and some info | main div is container and border -->
+	<div class="main" id="main__0">
+	
+		<!-- Headline, version, button -->
+		<div class="text" id="headline">
+			<h1>Eupo's Inspiring, Balanced and Interesting Character Generator</h1>
+			
+			<p id="version">version 1.1.1</p>
+			
+			<button type="button" id="rollButton" onclick="rollAbilities();">Roll The Dice!</button>
+			<button type="button" id="swapButton" class="button--gone" onclick="swapRequest(); charAna();">Swap Two</button>
+			<button type="button" id="addButton" onclick="addRequest()" class="button--gone">Raise Two By One</button>
+			<br>
+		</div>
+		
+		<!-- table for Abilities, Ability Score, Modifier and Checkboxes | all done in grid style to keep the complexity low -->
+		<div class="table__0__holder">
+		<div class="table__0">
+			<div class="data table__column__0 table__row__0">Ability</div><div class="data table__column__1 table__row__0">Score</div><div class="data table__column__2 table__row__0">Modifier</div><div class="data table__column__3 table__row__0">&nbsp;</div>
+			
+			<div class="data table__column__0 table__row__1">STR:&nbsp;</div><div class="data table__column__1 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__1">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__0" type="checkbox" name="swap" /></div>
+			
+			<div class="data table__column__0 table__row__2">DEX:&nbsp;</div><div class="data table__column__1 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__2">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__1" type="checkbox" name="swap" /></div>
+			
+			<div class="data table__column__0 table__row__3">CON:&nbsp;</div><div class="data table__column__1 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__3">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__2" type="checkbox" name="swap" /></div>
+			
+			<div class="data table__column__0 table__row__4">INT:&nbsp;</div><div class="data table__column__1 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__4">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__3" type="checkbox" name="swap" /></div>
+			
+			<div class="data table__column__0 table__row__5">WIS:&nbsp;</div><div class="data table__column__1 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__5">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__4" type="checkbox" name="swap" /></div>
+			
+			<div class="data table__column__0 table__row__6">CHA:&nbsp;</div><div class="data table__column__1 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__6">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__5" type="checkbox" name="swap" /></div>
+		</div>	
+		</div>
+		
+		<div class="text" id="info">
+			<p>Ability Score Total: <span id="AST" class="data--hidden">&nbsp;</span><br><br>Modifier Total: <span id="MT" class="data--hidden">&nbsp;</span><br><br></p>
+			<big>List Of The Most Important Criteria</big>
+				<ul>
+					<li>The character rolled will have at least one Ability Score of 15 or 16</li>
+					<li>There will be no Ability Scores under 7, but least one with a negative Modifier</li>
+					<li>The character will have a Stat Total (i.e. all Ability Scores added) of anything between 72 and 75</li>
+					<li>The Ability Scores will have a limited number of duplicates - no more than a single pair and no three alike</li>
+				</ul>
+			
+		</div>
+		
+		<div class="text item--gone" id="plan">
+			<h2>Plan For A Class</h2>
+			<p>Now is the time to pretty much decide on which class you would like to play and probably reallocate some ability scores accordingly. You only get to swap two ability scores though, so you'll have to let what you've got here inspire your choice of class. Don't forget that you can also raise ability scores as you gain levels.</p>
+			
+			<p>If you want to, you can look at the list of races below. Sometimes, thinking about race the same time you swap Ability Scores will be what makes a good character. For instance, a character with lots of odd Ability Scores benefits greatly from being a Human, since only even Ability Scores increases Modifiers.</p>
+			
+			<p>Generally, you'll want your best ability score to be your class' most frequently used <em>attack</em> modifier; STR for Fighters, DEX for Rogues, INT for Wizards, WIS for Clerics and Druids, CHA for Warlocks and Sorcerers. Other classes (and some subclasses) can be a bit more complicated to get right - if you are curious, take a look at page 45ff in the Player's Handbook or simply talk it over with your DM.</p>
+			
+			<p>Next step, we'll find a race that compliments your choices. If you do not want to swap any of the ability scores, just click the swap button without having any checkboxes marked to skip ahead.</p>
+		</div>
+		
+		
+		
+	</div>
+	
+	<div class="main" id="main__1">
+	
+		<div class="pre__container" id="pre__c">
+			<div class="text item--gone" id="copy">
+				<h2>Copy To Mail</h2>
+				<p>Now the character is done and all there remains is to fill it into your character sheet. For ease and backup, you can copy/paste this tiny text snippet and send it to both player and DM as an e-mail. </p>
+				<p>- As simple and solid as can be.</p> 
+				<br>
+				<h3 style="text-align: center;">Good luck on all of your adventures!</h3>
+				<br>
+				<p style="text-align: center; font-size: 10px;">And if luck doesn't smile, feel free to visit again :)</p>
+				<br>
+			</div>
+			<div class="pre__item item--gone" id="pre__i">
+			
+				<pre>
+				
+   Race: <span id="racet"></span>
+   
+   STR:	<span id="s0t"></span>	MOD: <span id="modV0t"></span><span id="mod0t"></span>
+   DEX:	<span id="s1t"></span>	MOD: <span id="modV1t"></span><span id="mod1t"></span>	
+   CON:	<span id="s2t"></span>	MOD: <span id="modV2t"></span><span id="mod2t"></span>	
+   INT:	<span id="s3t"></span>	MOD: <span id="modV3t"></span><span id="mod3t"></span>	
+   WIS:	<span id="s4t"></span>	MOD: <span id="modV4t"></span><span id="mod4t"></span>	
+   CHA:	<span id="s5t"></span>	MOD: <span id="modV5t"></span><span id="mod5t"></span>
+				</pre>
+				
+			</div>
+			<div class="text item--gone" id="thanks">
+				<br>
+				<h3 style="padding-left: 10%; padding-right: 10%;">Thank you for using the Inspiring, Balanced and Interesting Character Generator!</h3>
+				<p style="padding-left: 10%; padding-right: 10%;">If you want to talk about the Character Generator - stories, bugs, suggestions, questions etc. - or just say hi or thank you, I've made <a href="https://www.reddit.com/r/dndnext/comments/7yeimv/modern_character_generation_tool_and_discussion/">this thread on Reddit's dndnext subreddit.</a></p>
+				<p style="padding-left: 10%; padding-right: 10%;">Feeling downright jubilant and want to throw me a bone at some point, <a href="https://www.amazon.com/ref=as_li_ss_tl?ie=UTF8&linkCode=ll2&tag=eupolemos-20&linkId=957eb2b54fe27a0b98110d0a08af29b7">use this link when you buy something at Amazon</a> and I'll get free money - which is incidentally the <b>best</b> kind of money ever invented!!</p>
+			</div>
+		</div>
+		<!-- <div id="pickTableToggle"> -->
+			<div class="text" id="pick">
+				<h2>Pick A Race</h2>
+				<p>As Socucius Ergalla says; <em>"There are a few ways we can do this, and the choice - is - yours"</em>.</p>
+				<ul>
+					<li>Perhaps you want a character with as high main ability scores as possible</li>
+					<li>Maybe you want a character with as good average modifiers as possible</li>
+					<li>Could be you feel that playing a certain race completely outshines any ability score advantages you might get or has benefits this tool hasn't catched on to</li>
+				</ul>
+				<div class="item--gone" id="pickToggle">
+					<p>Whichever may be the case, here are some suggestions:</p>
+					
+					<p><span id="specialCaseWis"></span></p>
+					
+					<p style="padding-left: 20px; padding-right: 20px; font-style: italic;">Your character's <span id="WISother"></span>best ability scores would benefit the most from choosing to be a <span id="sugHumanoid"></span><span id="sugHumanoid2"></span>. <br/>This would increase <span id="totBoth"><em>only </em>one of your two best modifiers by +1 and place it</span> at +<span id="maxHumanoid"></span>.</p>
+					
+					<p>However, there is also the "Humanity" races to consider - Human, Variant Human and Half Elf - where some ability scores are raised just enough to improve the modifiers (raising an odd ability score to an even increases the modifier by one).</p>
+					
+					<p style="padding-left: 20px; padding-right: 20px; font-style: italic;"><span id="poorChoice">Choosing to be a <span id="sugHumanity"></span> could increase your total modifiers by +<span id="totHumanity"></span> and place your best ability at a +<span id="maxHumanity"></span> modifier.</span></p>
+					<br>
+				</div>
+				<button type="button" id="pickButton" class="button--hidden" onclick="getChoice()">Pick Your Race</button>
+				<br>
+			</div>
+			
+			<!-- This div is for the race-table. It is created through JS (the function "makeList()"), using array-contents for the grid cells -->
+			<div class="text table__1" id="table__1">
+			</div>
+		<!-- </div> -->
+	</div>
+	
+	<script type="text/javascript" src="cg_script.js"></script>
+
+</body>
+
+</html>

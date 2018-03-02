@@ -1,0 +1,367 @@
+﻿
+/* Grid https://css-tricks.com/snippets/css/complete-guide-grid/ */
+/* BEM+ https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/ */
+
+/* grid routine: first grid-CSS for this item, then container grid-CSS for next div */
+
+
+:root {
+	--color1: #FFFFF6;
+	--color2: #cc0000; /* #ffffcc; */
+	--font:  'Quicksand', sans-serif; /* previously Quicksand, Atma, Cormorant, Arvo but a bit too much like comic sans and doesn't send a professional feel, even though I like it tacky for the site - needs link update in html*/
+	
+}
+/* something: var(--color1); */
+
+
+					/* ===== ELEMENTS ===== */
+
+body {
+	/* turn body into a grid for margins etc. */
+	display: grid;
+	grid-template-columns: minmax(35px, 2fr) 8fr minmax(35px, 2fr);
+	grid-template-rows: auto auto;
+	grid-gap: 20px;
+	
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-family: var(--font);
+	background-image: url(http://mvravn.dk/dice75.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	
+	color: var(--color1);
+	font-size: 14px; 
+}
+
+a {
+	color: var(--color1);
+}
+
+a:visited {
+	color: var(--color1);
+}
+
+a:hover {
+	color: red;
+	transition: color 1s;
+}
+
+pre {
+	color: black;
+	padding-left: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 14px;
+}
+
+button {
+	/* makes all buttons equal */
+	width: 150px;
+	height: 60px;
+	color: black;
+	font-weight: bold;
+	border-radius: 10px;
+	border-color: var(--color1);
+	transition: background-color 5s, border-color 5s;
+	background-color: var(--color1);
+	outline: none;
+	margin: 0 auto;
+	font-family: var(--font);
+}
+
+button:hover {
+	/* makes all buttons equal, too */
+	background-color: var(--color2);
+	border-color: var(--color2);
+}
+
+h1 {
+	/* Centers the title and gives it a size */
+	font-size: 24px;
+	text-align: center;
+}
+
+p {
+	
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+
+			/* ===== IDs IN CHRONOLOGICAL ORDER - USED FOR GRID PLACEMENT PURPOSES ===== */
+
+#main__0 {
+	/* holds the first batch of divs */
+	grid-row-start: 1;
+	
+}
+					
+#headline {
+	/* holds the title */
+	grid-column-start: 2;
+	grid-row-start: 2;	
+
+}
+
+#version {
+	/* holds the version text */
+	text-align: center; 
+	font-size: 80%;
+	font-style: italic;
+}
+
+#button__slot__one {
+	/* holds the buttons over table__0 (the upper table with Ability Scores etc.) */
+	
+}
+
+#criteria {
+	/* holds the up-front criteria list */
+	
+}
+
+#button__slot__two {
+	/* holds the button opening for additional info */
+	
+}
+
+#info {
+	/* holds the long list with info */
+	grid-column-start: 2;
+	grid-row-start: 4;
+}
+
+#AST {
+	/* Ability Score Total */
+	
+}
+
+#MT {
+	/* Modifier Total */
+	
+}
+
+#plan {
+	/* holds the text about planning for a class */
+	grid-column-start: 2;
+	grid-row-start: 5;
+}
+
+#main__1 {
+	/* holds the second batch of divs */
+	grid-row-start: 2;
+}
+
+#copy {
+	/* holds the super raw text for copying */
+	grid-column: 1/4;
+	grid-row-start: 1;
+}
+
+#pre__i {
+	/* holds the super raw text for copying */
+	grid-column-start: 2;
+	grid-row-start: 2;
+	background: white;
+}
+
+#pre__c {
+	grid-column-start: 2;
+	grid-row-start: 2;
+	
+}
+
+#thanks {
+	/* holds the super raw text for copying */
+	grid-column: 1/4;
+	grid-row-start: 3;
+}
+
+#pick {
+	/* holds the advice about picking a race */
+	grid-column-start: 2;
+	grid-row-start: 3;
+}
+
+#pickToggle {
+	/* allows for hiding and expanding part of the Pick Race text */
+	
+}
+
+#table__1 {
+	/* holds the list for picking a race */
+	grid-column-start: 2;
+	grid-row-start: 4;
+	
+}
+
+#button__slot__three {
+	/* holds the button validating the race choice */
+	
+}
+
+#race__list {
+	/* holds the list for picking a race */
+	
+}
+
+#copy {
+	/* holds the text about copying the sheet */
+	
+}
+
+#last_comment {
+	/* holds the text and links to Reddit and Amazon */
+	
+}
+
+
+					/* ===== CLASSES ===== */
+
+.item--hidden {
+	/* hides a grid item */
+
+}
+
+.item--gone {
+	/* removes a grid item */
+	display: none !important; /* only way I know to let this class override the grid class display: grid; */
+}
+					
+.main {
+	/* makes main divs with borders for a nice frame of user focus */
+	grid-column-start: 2;
+	background: rgba(0, 0, 0, 0.8);
+	border-style: ridge;
+	border-radius: 10px;
+	border-color: #FFFFF6;
+	
+	display: grid;
+	grid-template-columns: minmax(auto, 62px) 4fr minmax(auto, 62px);
+	grid-template-rows: 62px auto auto auto auto auto 62px;
+	
+	
+	/*
+	minmax(35px, 1fr);
+	grid-template-columns: minmax(62px, 1fr) 8fr minmax(62px, 1fr);
+	grid-template-columns: minmax(35px, 1fr) 900px minmax(35px, 1fr);
+	grid-template-columns: 1fr 900px 1fr;
+	grid-template-rows: 62px 1fr 1fr 1fr 62px;
+	*/
+}
+
+.text {
+	/* makes text divs that works as items in the .main grid 
+	grid-column-start: 2;
+	grid-row-start: 2;*/
+	
+	display:grid;
+}
+
+.pre__container {
+	/* Places the Pre element in a sensible fashion */
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.pre__item {
+	/* Places the Pre element in a sensible fashion 
+	grid-column-start: 2;*/
+	background: white;
+	border-radius: 10px;
+
+	/* grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+	grid-gap: 1px; */
+}
+
+.button--hidden {
+	/* Hides the button, but keeps it's place reserved */
+	visibility: hidden;
+}
+
+.button--gone {
+	/* Button isn't there anymore */
+	display: none;
+}
+
+.table__0__holder {
+	grid-column-start: 2;
+	grid-row-start: 3;
+	
+	display: grid;
+	grid-template-columns: 3fr 6fr 1fr;
+	grid-template-rows: 1fr 6fr auto;
+}
+
+.table__0 {
+	/* makes a table by an internal grid */
+	grid-column-start: 2;
+	grid-row-start: 2;
+	
+	display: grid;
+	grid-template-columns: repeat(3, 4fr) 1fr;
+	grid-template-rows: repeat(7, 1fr);
+	grid-gap: 5px;
+}
+
+.table__1 {
+	/* makes another table by an internal grid - this one for races */
+
+	
+	display: grid;
+	grid-template-columns: 1fr 8fr 4fr 4fr 28fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 5px;
+	}
+
+.data.table__row__0 {
+	/* top row in table__0 holding headings for the columns */
+	justify-self: stretch;
+	transform: rotate(-45deg);
+	transform-origin: 0%; /* lets the row rotate on it's left corner */
+}
+
+.data {
+	/* each data field in the table */
+	color: var(--color1);
+	justify-self: stretch;
+}
+
+.data--hidden {
+	/* data fields being held back, also holds two extra elements via span for the Totals */
+	color: rgba(0, 0, 0, 0.0);
+	transition: color 0.7s;
+}
+
+.data--reveal {
+	/* data fields to be revealed, also holds two extra elements via span for the Totals */
+	color: var(--color1);
+}
+
+.data__1 {
+	/* each data field in the table for races */
+	
+	color: var(--color1);
+}
+
+.data__1--hidden {
+	/* hides data fields in the table for races */
+	color: rgba(0, 0, 0, 0.0);
+	opacity: 0;
+	transition: color 0.7s, opacity 0.7s;
+}
+
+.checkbox {
+	/* checkboxes in the character table */
+	opacity: 1;
+}
+
+.checkbox--hidden {
+	/* hides checkboxes in the character table */
+	opacity: 0;
+	transition: opacity 0.7s;
+}
+
+
+
