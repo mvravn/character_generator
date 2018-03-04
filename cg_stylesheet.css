@@ -227,6 +227,7 @@ p {
 .item--gone {
 	/* removes a grid item */
 	display: none !important; /* only way I know to let this class override the grid class display: grid; */
+	
 }
 					
 .main {
@@ -252,10 +253,7 @@ p {
 }
 
 .text {
-	/* makes text divs that works as items in the .main grid 
-	grid-column-start: 2;
-	grid-row-start: 2;*/
-	
+	/* makes text divs that works as items in the .main grid */
 	display:grid;
 }
 

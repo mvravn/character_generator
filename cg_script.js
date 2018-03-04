@@ -3,7 +3,7 @@
 "use strict";
 
 // Global Variables
-var abilityScore = []; // The array of ability scores, set at 5 for testing purposes (this is an impossible number for the generator after criteria are applied) and to make the while-loop condition initially true
+var abilityScore = []; // The array of ability scores
 var abilityScoreTotal = 0; // The sum of all Ability Scores for the character
 var modArray = []; // The sum of all Ability Scores for the character
 var modVArray = []; // Communicates to the user if the value of the Modification is positive. Negative shows on its own
@@ -245,7 +245,7 @@ function revealAbilities() {
 	
 	
 	for (let i = 0; i < 7; i++) {
-		let delay = i*120;
+		let delay = i*1200;
 		var revealTicker = setTimeout(doReveal, delay);
 		revealTicker;
 	}
