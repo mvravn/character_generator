@@ -10,7 +10,7 @@ var modVArray = []; // Communicates to the user if the value of the Modification
 var modTotal = 0; // All Modifiers summed up
 var abilities = ["STR", "DEX", "CON", "INT", "WIS", "CHA"]; // Array of Abilities
 
-var humanoids = [
+const humanoids = [
 	[0,0,2,0,1,0,"Hill Dwarf","Gets +1 HP per level"],
 	[2,0,2,0,0,0,"Mountain Dwarf","Has Light and Medium armor proficiency"],
 	[0,2,0,1,0,0,"High Elf","Knows a cantrip of your own choice"],
@@ -24,7 +24,7 @@ var humanoids = [
 	[0,0,0,1,0,2,"Tiefling","Knows some spells, has resistance to fire"]
 ];
 
-var humanity = [
+const humanity = [
 	["Half Elf", "Gets +1 to two other abilities and proficiency in two skills"],
 	["Variant Human", "Gets +1 to two abilities and may chose one Feat (special ability)"],
 	["Human", "Gets +1 to every ability"]
@@ -245,7 +245,7 @@ function revealAbilities() {
 	
 	
 	for (let i = 0; i < 7; i++) {
-		let delay = i*1200;
+		let delay = i*1100;
 		var revealTicker = setTimeout(doReveal, delay);
 		revealTicker;
 	}
@@ -257,23 +257,26 @@ function revealAbilities() {
 			//console.log("ranNums i: ", ranNums[i])
 			let a = 1+ranNums[i]; // a is every row in column 1 from row 1, not 0.
 			//console.log(a);
-			let x = document.getElementsByClassName("table__column__1"); // Gets the data cells in table__0, meaning the first table
-			x[a].className += " data--reveal"; // Reveals this particular data cell, without anything else - this lets the user see the numbers before all the modifiers and checkboxes.
+			let x = document.getElementsByClassName("table__column__1"); // Targets the second column of data cells in table__0 (the first table)
+			x[a].className += " data--reveal data--reveal--slide"; // Reveals this particular data cell, without anything else - this lets the user see the numbers before all the modifiers and checkboxes.
 			i++;
 		}
 		else {
 			// Reveals all the rest of the relevant data cells plus the two Total stats
 			let x = document.getElementsByClassName("data");
-			for (let i = 0; i < x.length; i++) {
+			let len = x.length;
+			for (let i = 0; i < len; i++) {
 				x[i].className += " data--reveal";
 			}
 			let y = document.getElementsByClassName("checkbox");
-			for (let i = 0; i < y.length; i++) {
+			for (let i = 0; i < 6; i++) {
+				
 				y[i].className = "checkbox"; // Removes the "checkbox--hidden" class
 			}
-			document.getElementById("AST").className += " data--reveal";
-			document.getElementById("MT").className += " data--reveal";
-			document.getElementById("plan").classList.remove("item--gone");
+			document.getElementById("AST").className += " data--reveal data--reveal--pop";
+			document.getElementById("MT").className += " data--reveal data--reveal--pop";
+			// document.getElementById("plan").classList.remove("item--gone");
+			animateReveal('plan'); // Reveals the plan Div
 		}
 	}
 }
@@ -305,21 +308,14 @@ function writeToSheet() {
 function swapRequest() {
 // Function of true or false if-checked statements to work with - activates on "submit"	
 	
-	// Toggle buttons and elements
+	// Toggle buttons and elements, reveal radio buttons
 	document.getElementById("swapButton").className = "button--hidden";
 	document.getElementById("pickButton").classList.remove("button--hidden");
-	
-	/*let x = document.getElementsByClassName("data__1--hidden");
-	for (let i = 0; i > 14; i++){
-		console.log("data__1--hidden", i);
-		x[i].className = "";
+	let len = humanoids.length+3;
+	for (let i = 0; i < len; i++) {
+		document.getElementsByName("race")[i].classList.remove("data__1--hidden");
 	}
 	
-	let y = document.getElementsByClassName("checkbox");
-	for (let i = 0; i < y.length; i++) {
-		y[i].className += " checkbox--hidden";
-	}
-	*/
 	var zero = document.getElementById("checkbox__0").checked;
 	var one = document.getElementById("checkbox__1").checked;
 	var two = document.getElementById("checkbox__2").checked;
@@ -368,13 +364,17 @@ function swapRequest() {
 			else if (zeta == 3) {abilityScore.splice(3, 1, beta);}
 			else {abilityScore.splice(4, 1, beta);} 
 		}
-		document.getElementById("plan").className += " item--gone";
-		document.getElementById("pickToggle").classList.remove("item--gone");
+		//document.getElementById("plan").className += " item--gone";
+		animateCollapse('plan');
+		//document.getElementById("pickToggle").classList.remove("item--gone");
+		animateReveal('pickToggle');
 	}
 	
 	if (boxAmount === 0) {
-		document.getElementById("plan").className += " item--gone"; 
-		document.getElementById("pickToggle").classList.remove("item--gone");
+		//document.getElementById("plan").className += " item--gone"; 
+		animateCollapse('plan');
+		//document.getElementById("pickToggle").classList.remove("item--gone");
+		animateReveal('pickToggle');
 	}
 	
 	// calculateModifiers();
@@ -529,7 +529,7 @@ function charAna() {
 	
 		if (WIScase) { // WIS is best and even - this messes with suggestions if not handled separately
 			document.getElementById("WISother").innerHTML = "other ";
-			document.getElementById("specialCaseWis").innerHTML = "Your character is a special case. None of the races offered in the original D&D 5e can improve your WIS modifier (this happens only when WIS is both your best ability score and an even number).";
+			document.getElementById("specialCaseWis").innerHTML = "<p>Your character is a special case. None of the races offered in the original D&D 5e can improve your WIS modifier (this happens only when WIS is both your best ability score and an even number).</p>";
 			// twoSecondaries or not - should be possible to write so it doesn't matter at all, since I've got locations and not just values.
 			
 			if (twoSecondaries) { // In case of duplicates
@@ -820,6 +820,7 @@ function makeList() {
 				//t.setAttribute("class", "data__1--hidden"); // Hides the buttons until they are needed
 				t.setAttribute("type", "radio");
 				t.setAttribute("name", "race"); // Having the same name is needed for getting the choice data, IIRC
+				t.setAttribute("class", "data__1--hidden"); // Don't show up yet
 				t.setAttribute("value", i); // AFAICS not used, but could be used for identifying which race is picked through value
 				// t.setAttribute("id", radioID);
 				x.appendChild(t); // Places the "input" element inside the current "div" (x)
@@ -858,6 +859,7 @@ function makeList() {
 				//t.setAttribute("class", "data__1--hidden"); // Hides the buttons until they are needed
 				t.setAttribute("type", "radio");
 				t.setAttribute("name", "race"); // Having the same name is needed for getting the choice data, IIRC
+				t.setAttribute("class", "data__1--hidden"); // Don't show up yet
 				t.setAttribute("value", i); // AFAICS not used, but could be used for identifying which race is picked through value
 				// t.setAttribute("id", radioID);
 				x.appendChild(t); // Places the "input" element inside the current "div" (x)
@@ -875,7 +877,7 @@ function makeList() {
 			}
 			document.getElementById("table__1").appendChild(x); // Finally places the "div" in the "table__1" element
 		}
-	}
+	}	
 }
 makeList();
 
@@ -895,8 +897,9 @@ function getChoice() {
 			
 			console.log("raceChoice", i);
 			
-			// Hide radio and button	
-			for (let i = 0; i < humanoids.length+3; i++) {
+			// Hide radio and button
+			let len = humanoids.length+3;
+			for (let i = 0; i < len; i++) {
 				document.getElementsByName("race")[i].className += " data__1--hidden";
 			}
 			document.getElementById("pickButton").className += " button--hidden";
@@ -919,18 +922,18 @@ function getChoice() {
 		}
 		
 		writeToSheet();
-		scrollToTheTop();
 		finalBox();
 		
 		// Toggle buttons and divs
 		document.getElementById("pickButton").className = "button--hidden";
-		document.getElementById("pick").className = "item--gone";
-		document.getElementById("pickToggle").className = "item--gone";
+		animateCollapse('pick');
+		animateCollapse('pickToggle');
 		document.getElementById("table__1").className = "item--gone";
-		document.getElementById("info").className = "item--gone";
-		document.getElementById("copy").classList.remove("item--gone");
-		document.getElementById("pre__i").classList.remove("item--gone");
-		document.getElementById("thanks").classList.remove("item--gone");
+		animateCollapse('info');
+		
+		animateReveal('copy');
+		animateReveal('pre__i');
+		animateReveal('thanks');
 	}
 	
 	else if (raceChoice === 13) { // Human
@@ -940,10 +943,10 @@ function getChoice() {
 		}
 		
 		writeToSheet();
-		scrollToTheTop();
 		finalBox();
 		
 		// Toggle buttons
+		/* All the old pre-animation stuff, kept in case something breaks
 		document.getElementById("pickButton").className = "button--hidden";
 		document.getElementById("pick").className = "item--gone";
 		document.getElementById("pickToggle").className = "item--gone";
@@ -952,6 +955,18 @@ function getChoice() {
 		document.getElementById("copy").classList.remove("item--gone");
 		document.getElementById("pre__i").classList.remove("item--gone");
 		document.getElementById("thanks").classList.remove("item--gone");
+		*/
+		
+		// Toggle buttons and divs
+		document.getElementById("pickButton").className = "button--hidden";
+		animateCollapse('pick');
+		animateCollapse('pickToggle');
+		document.getElementById("table__1").className = "item--gone";
+		animateCollapse('info');
+		
+		animateReveal('copy');
+		animateReveal('pre__i');
+		animateReveal('thanks');
 	}
 	
 	else if (raceChoice === 12) { // Variant Human
@@ -969,7 +984,7 @@ function getChoice() {
 		document.getElementById("addButton").className = "";
 		document.getElementById("pickButton").className = "button--hidden";
 		document.getElementById("swapButton").className = "button--gone";
-		document.getElementById("info").className = "item--gone";
+		animateCollapse('info');
 	}
 	
 	else { // Half Elf
@@ -992,7 +1007,7 @@ function getChoice() {
 		document.getElementById("addButton").className = "";
 		document.getElementById("pickButton").className = "button--hidden";
 		document.getElementById("swapButton").className = "button--gone";
-		document.getElementById("info").className = "item--gone";
+		animateCollapse('info');
 	}
 }
 
@@ -1014,13 +1029,13 @@ function scrollToTheTop() {
 // Adds Ability Scores as chosen if Variant Human or Half Elf is chosen
 function addRequest() {
 	
-	document.getElementById("pick").className = "item--gone";
-	document.getElementById("pickToggle").className = "item--gone";
+	animateCollapse('pick');
+	animateCollapse('pickToggle');
 	document.getElementById("table__1").className = "item--gone";
-	document.getElementById("info").className = "item--gone";
-	document.getElementById("copy").classList.remove("item--gone");
-	document.getElementById("pre__i").classList.remove("item--gone");
-	document.getElementById("thanks").classList.remove("item--gone");
+	
+	animateReveal('copy');
+	animateReveal('pre__i');
+	animateReveal('thanks');
 		
 	// Check booleans of checkboxes
 	var zero = document.getElementById("checkbox__0").checked;
@@ -1073,6 +1088,7 @@ function addRequest() {
 }
 
 
+// Writes Character to a simple white box for easy copying
 function finalBox() {
 	// Don't display pickRace
 	/*
@@ -1119,9 +1135,67 @@ function finalBox() {
 }
 
 
+// Function for animating the removal of the non-animatable "display: none;" property
+function animateReveal(IDToAdd) {
+	
+	// Display a hidden ghost div in main__2 to get the animation height from
+	let divToBeCopied = document.getElementById(IDToAdd);
+	console.log(divToBeCopied);
+	let ghostDiv = document.getElementById("ghost");
+	console.log(ghostDiv);
+	ghostDiv.innerHTML = divToBeCopied.innerHTML;
+	
+	// Get div height to add from the ghost element
+	let addHeight = document.getElementById("ghost").clientHeight; // Height to be animated to
+	console.log("addHeight height:", addHeight);
+	
+	// Animate the height addition by expanding div
+	document.documentElement.style.setProperty("--expandHeight", addHeight + "px");
+	document.getElementById(IDToAdd).className = "text item--expand";
+	
+	// Fade in content when animation is done
+	let x = document.getElementById(IDToAdd);
+	x.addEventListener("animationend", fadeIn);
+	function fadeIn() {
+		x.className = "text item--reveal";
+		x.addEventListener("transitionend", restoreClass);
+		function restoreClass() {
+			document.getElementById(IDToAdd).classList.remove("item--reveal");
+			x.removeEventListener("transitionend", restoreClass);
+		}
+		x.removeEventListener("animationend", fadeIn);
+	}
+}
+
+// Function for animating the addition of the non-animatable display:none property
+// Needed a removeEventListener above to not bug out - added down here too for good measure. Link:  https://www.google.dk/search?q=removeEventListener&oq=removeEventListener&aqs=chrome..69i57j0l5.1382j0j8&sourceid=chrome&ie=UTF-8
+function animateCollapse(IDToRemove) {
+	
+	// Measure height to remove
+	let removeHeight = document.getElementById(IDToRemove).clientHeight;
+	
+	// Fade out content
+	document.getElementById(IDToRemove).className = "text item--hidden";
+	
+	// Animate removal when fade-out is done
+	let x = document.getElementById(IDToRemove);
+	x.addEventListener("transitionend", collapse); // Waits for the fadeout
+	function collapse() {
+		document.documentElement.style.setProperty("--collapseHeight", removeHeight + "px");
+		document.getElementById(IDToRemove).className += " item--collapse";
+		x.removeEventListener("transitionend", collapse);
+	}
+}
 
 
+function showAbout() {
+	document.getElementById("about__element").classList.remove("item--hidden");
+	document.getElementById("about__element").classList.remove("item--gone");
+}
 
+function removeAbout() {
+	document.getElementById("about__element").className = "main__3 item--hidden item--gone";
+}
 
 
 

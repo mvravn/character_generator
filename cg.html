@@ -1,23 +1,89 @@
-﻿
-<!-- Fix and learn this:  https://www.reddit.com/r/dndnext/comments/7yeimv/modern_character_generation_tool_and_discussion/dugqddt/ -->
+﻿<!DOCTYPE html>
+
+
 <html>
 
 <head>
 	
-	<meta name="description" content="Inspiring, Balanced and Interesting D&D 5e Character Generator" />
-	<meta name="keywords" content="D&D, 5e, character builder, character generator, character creation, NPC, dungeons & dragons, inspiration, balanced, interesting, tool, Eupolemos" />
+	<meta charset="utf-8" />
+	<meta name="description" content="This is Eupolemos' Inspiring, Balanced and Interesting Character Generator for D&D 5e - it seeks to avoid pitfalls for new and old players, inspire you to make unexpected characters and keep your game engaging for as long as possible." />
+	<meta name="keywords" content="character generator, character builder, character creation, D&D, dungeons & dragons, 5e, inspiration, balanced, interesting, tool, NPC, Eupolemos, Eupo" />
 	<meta name="author" content="Eupolemos" />
 
-	<title>Inspiring, Balanced and Interesting Character Generator</title>
+	<title>Inspiring and Balanced Character Generator for D&D 5e</title>
 
 	<link rel="stylesheet" href="cg_stylesheet.css" type="text/css">
 
 	<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+	<link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet">
 	
 </head>
 
 <body>
-	<!-- comment -->
+	<!-- style="font-size: 550%;" -->
+	<div id="about__button" alt="about-page" onClick="showAbout()">
+		?
+	</div>
+	
+	<div class="main__3 item--hidden item--gone" id="about__element" onClick="removeAbout()">
+		
+		<h3>What is this?</h3>
+		<p>This is a Character Generator for Dungeons & Dragons 5th Edition, aimed at generating characters that will keep the player and group happily engaged for as long as possible.</p>
+		<p>There is a lot of experience with D&D embedded in the code, which results in giving the player meaningful choices and advice, rather than a nihilistic "freedom".</p>
+		<p class="item--gone">It is also my personal coding project. If you care about that, you can read more in the end of this document.</p>
+		<br><br>
+		
+		<h3>Further List Of Obscure Criteria</h3>
+		<ul>
+			<li>If the character has one of the two lowest allowed Stat Totals (72 or 73), it cannot also have the lowest allowed best Ability Score (15).</li>
+			<li>Since CON is not the main Ability Score of any class, it shall not count as the required 15 or 16 with regards to keeping the character.</li>
+			<li>On that same note, CON will never start out as negative. Low CON would often force players to make a the swap with the intent to not suck, rather than make a swap deciding where be strong.</li>
+			<li>The total value of the Ability Scores plus the amount of odd valued Ability Scores cannot surpass 78, nor be less than 75. If this was the case, peculiar characters would appear from time to time, where picking the Human race would completely break the boundaries for total Modifiers.</li>
+			<li>If a character has more than 2 Ability Scores under 10, it will be re-rolled.</li>
+			<li>If a character has more than 2 Modifiers of 0, it will be re-rolled.</li>
+			<li>The highest Ability Score cannot have a duplicate.</li>
+		</ul>
+		<br/><br>
+		
+		<h3>The Goal Of The Generator</h3>
+		<p>The point of this generator is - as stated above - to create Inspiring, Balanced and Interesting characters for D&D 5e. </p>
+		<p>In particular, it should be a helping hand to newer or more "otherwise preoccupied" players (you've probably heard of those weirdos who can go for weeks without even opening the PHB...). Hopefully, this will ease the job of bringing new and experienced players together.<br>- This is NOT the prophesied Vorpal MinMaxer2000 AI.</p>
+		<p>It is Inspiring in the sense that you can't always get everything you want, but will have to adapt a bit to fit with the Ability Scores you get. Also, not starting with 20 in any Ability Score (or at least extremely rarely) gives your character something to strive for throughout the adventures.</p>
+		<p>Balanced in the sense that... Well, there are a lot of criteria for a satisfying character for this tool, as you can see. But a group with too great a power-gap between the characters can really lower the fun for some of the players whenever there's combat. Balanced characters takes away potential headaches for the DM, be the master fresh or venerable.</p>
+		<p>And finally Interesting in the sense that the Ability Scores will have a nice distribution. You will always have a weak spot - this is actually good, it is more fun to play! - and there are very few duplicate values. This gives your character... Character!</p><br/><br>
+		
+		<h3>The Tradeoff</h3>
+		<p>Honestly, I (Eupolemos) dislike these online character generators. I like rolling for characters. For me the 3d6 is part of the D&D magic - it seems a misunderstanding to take that away.</p>
+		<p>But the lack of balanced characters <b>can</b> be a real problem as a DM, and equally as much for fellow players. If somebody can't help themselves and happen to fudge the dice a little bit, they don't mean to be wangrods; they just want to live out a fantasy! And dice are fickle; perverse even. You've seen it, you <b>know</b> what I'm talking about!</p>
+		<p>Following the D&D communities on places like Reddit, it seems to me like there's a shift towards point-buy (PHB p. 13), to keep the basics even between players. In my opinion, that holds maladies as well, with knowledge of optimal distributions for races and classes, always getting what you want rather than let the rolls inspire etc.</p> 
+		<p>Well, between pointbuy and rolling with a hundred house-rules, I thought some might find this to be a good third alternative.</p>
+		<br/><br>
+		
+		<h3>F.A.Q.</h3>
+		<p>Q: How does the generator work?</p>
+		<p>A: The generator simulates a roll of 3d6 for each Ability Score. It then matches the complete character with a set of criteria. If the character fails to meet these, it will get re-rolled without you noticing it. You get to see the number of re-rolls, however.</p><br>
+		<p>Q: Can I get a character with an Ability Score of 17 or 18?</p>
+		<p>A: Yes, absolutely. They are rare, however. If the character rolled does not also have a 15 or 16 as an ability score, it will get re-rolled out of existence. If 17 and 18 counted as a positive criteria along with 16 and 15 for keeping a character, they'd be much too common. Now they are rare, balanced and precious - just like they should be!</p><br>
+		<p>Q: Why is the generator so infuriatingly slow?</p>
+		<p>A: The point of this generator is to make the player look at the stats and think <b>hard</b> about what character can be made with them - and NOT to simply obey the player's preconceived idea of a character. Point-buy or house-rules will do that quite well, and this generator would be a waste of time.</p>
+		<p>If characters could be re-rolled instantaneously, we'd be lured to click away like a slot-machine addict rather than use our brain and imagination. Also, it gives the reveal more gravitas - this will be the skin of your fantasy's avatar for the next hundreds of hours being. Give it some respect.</p><br>
+		<p>Q: Where's my Drow!?</p>
+		<p>A: Drizzt is... Ah, I mean Drow are of course super cool, but this tool tries to keep things simple and not suggest a race that has disadvantages in daylight. But much more importantly, since Drow have the exact same stats as Lightfoot Halflings, it would be a mess to code. <br/>If you want a Drow, just pick the Lightfoot Halfling.</p><br>
+		<p>Q: How do I start over on the character creation?</p>
+		<p>A: Reload the page.</p><br>
+		<p>Q: Will you include more races in the future?</p>
+		<p>A: No, I don't think so - not in the foreseeable future, at least. It can be difficult to code (this is my first project using JavaScript, so it is a bit messy behind the scenes) and I do prefer keeping things classic. Maybe if I rewrite it all one day, but it is not a priority to me and there would probably be other things I'd rather attempt.</p>
+		<br><br>
+		
+		<h3>What I Might Add In The Future</h3>
+		<ul>
+			<li>Suggestions for what the defining Ability Scores could mean for the character, e.g. low DEX and high STR could mean a strong fighter who took an arrow to the knee but kept adventuring etc.</li>
+			<li>What each Ability Score is important for when it comes to saves and skills</li>
+			<li>Blurbs on what is important for different classes and where certain Ability Scores lose importance, e.g. a Fighter doesn't always benefit from good DEX, since heavy armor overrides this etc. </li>
+			<li>Make this double as an NPC generator with instant re-rolls and endless swaps.</li>
+		</ul>
+	</div>
+	
 	<!-- Character Sheet Intro and some info | main div is container and border -->
 	<div class="main" id="main__0">
 	
@@ -25,8 +91,9 @@
 		<div class="text" id="headline">
 			<h1>Eupo's Inspiring, Balanced and Interesting Character Generator</h1>
 			
-			<p id="version">version 1.1.1</p>
+			<h4>For Dungeons & Dragons 5e!</h4>
 			
+			<p id="version">version 1.1.1</p>
 			<button type="button" id="rollButton" onclick="rollAbilities();">Roll The Dice!</button>
 			<button type="button" id="swapButton" class="button--gone" onclick="swapRequest(); charAna();">Swap Two</button>
 			<button type="button" id="addButton" onclick="addRequest()" class="button--gone">Raise Two By One</button>
@@ -35,26 +102,28 @@
 		
 		<!-- table for Abilities, Ability Score, Modifier and Checkboxes | all done in grid style to keep the complexity low -->
 		<div class="table__0__holder">
-		<div class="table__0">
-			<div class="data table__column__0 table__row__0">Ability</div><div class="data table__column__1 table__row__0">Score</div><div class="data table__column__2 table__row__0">Modifier</div><div class="data table__column__3 table__row__0">&nbsp;</div>
-			
-			<div class="data table__column__0 table__row__1">STR:&nbsp;</div><div class="data table__column__1 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__1">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__0" type="checkbox" name="swap" /></div>
-			
-			<div class="data table__column__0 table__row__2">DEX:&nbsp;</div><div class="data table__column__1 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__2">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__1" type="checkbox" name="swap" /></div>
-			
-			<div class="data table__column__0 table__row__3">CON:&nbsp;</div><div class="data table__column__1 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__3">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__2" type="checkbox" name="swap" /></div>
-			
-			<div class="data table__column__0 table__row__4">INT:&nbsp;</div><div class="data table__column__1 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__4">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__3" type="checkbox" name="swap" /></div>
-			
-			<div class="data table__column__0 table__row__5">WIS:&nbsp;</div><div class="data table__column__1 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__5">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__4" type="checkbox" name="swap" /></div>
-			
-			<div class="data table__column__0 table__row__6">CHA:&nbsp;</div><div class="data table__column__1 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__6">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__5" type="checkbox" name="swap" /></div>
-		</div>	
+			<div class="table__0">
+				<div class="data table__column__0 table__row__0">Ability</div><div class="data table__column__1 table__row__0">Score</div><div class="data table__column__2 table__row__0">Modifier</div><div class="data table__column__3 table__row__0">&nbsp;</div>
+				
+				<div class="data table__column__0 table__row__1">STR:&nbsp;</div><div class="data table__column__1 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__1">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__0" type="checkbox" name="swap" /></div>
+				
+				<div class="data table__column__0 table__row__2">DEX:&nbsp;</div><div class="data table__column__1 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__2">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__1" type="checkbox" name="swap" /></div>
+				
+				<div class="data table__column__0 table__row__3">CON:&nbsp;</div><div class="data table__column__1 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__3">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__2" type="checkbox" name="swap" /></div>
+				
+				<div class="data table__column__0 table__row__4">INT:&nbsp;</div><div class="data table__column__1 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__4">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__3" type="checkbox" name="swap" /></div>
+				
+				<div class="data table__column__0 table__row__5">WIS:&nbsp;</div><div class="data table__column__1 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__5">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__4" type="checkbox" name="swap" /></div>
+				
+				<div class="data table__column__0 table__row__6">CHA:&nbsp;</div><div class="data table__column__1 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__6">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__5" type="checkbox" name="swap" /></div>
+			</div>	
 		</div>
 		
+		<!-- Basic information on aggregates of the user's rolled character and the most important criteria to expect of a character  -->
 		<div class="text" id="info">
 			<p>Ability Score Total: <span id="AST" class="data--hidden">&nbsp;</span><br><br>Modifier Total: <span id="MT" class="data--hidden">&nbsp;</span><br><br></p>
-			<big>List Of The Most Important Criteria</big>
+			
+			<h3>List Of The Most Important Criteria</h3>
 				<ul>
 					<li>The character rolled will have at least one Ability Score of 15 or 16</li>
 					<li>There will be no Ability Scores under 7, but least one with a negative Modifier</li>
@@ -64,6 +133,7 @@
 			
 		</div>
 		
+		<!-- Advice on planning ahead when making important choices -->
 		<div class="text item--gone" id="plan">
 			<h2>Plan For A Class</h2>
 			<p>Now is the time to pretty much decide on which class you would like to play and probably reallocate some ability scores accordingly. You only get to swap two ability scores though, so you'll have to let what you've got here inspire your choice of class. Don't forget that you can also raise ability scores as you gain levels.</p>
@@ -74,26 +144,27 @@
 			
 			<p>Next step, we'll find a race that compliments your choices. If you do not want to swap any of the ability scores, just click the swap button without having any checkboxes marked to skip ahead.</p>
 		</div>
-		
-		
-		
 	</div>
 	
+	<!-- Second main container -->
 	<div class="main" id="main__1">
-	
+		
+		<!-- The last little piece of info to show up in the use of this generator - text and a block to copy -->
 		<div class="pre__container" id="pre__c">
 			<div class="text item--gone" id="copy">
 				<h2>Copy To Mail</h2>
 				<p>Now the character is done and all there remains is to fill it into your character sheet. For ease and backup, you can copy/paste this tiny text snippet and send it to both player and DM as an e-mail. </p>
 				<p>- As simple and solid as can be.</p> 
 				<br>
-				<h3 style="text-align: center;">Good luck on all of your adventures!</h3>
+				<h2 style="text-align: center;">Good luck on all of your adventures!</h2>
 				<br>
 				<p style="text-align: center; font-size: 10px;">And if luck doesn't smile, feel free to visit again :)</p>
 				<br>
 			</div>
-			<div class="pre__item item--gone" id="pre__i">
 			
+			<!-- Pre container. The Pre element is very basic and sensitive, but also super simple, removing any mess when intended for copy-paste  -->
+			<div class="pre__item item--gone" id="pre__i">
+				<!-- the Pre element itself - DO NOT TOUCH OR INDENT - the indentation itself determines the output style on the webpage -->
 				<pre>
 				
    Race: <span id="racet"></span>
@@ -107,46 +178,55 @@
 				</pre>
 				
 			</div>
+			<!-- A thank you and read further div -->
 			<div class="text item--gone" id="thanks">
 				<br>
 				<h3 style="padding-left: 10%; padding-right: 10%;">Thank you for using the Inspiring, Balanced and Interesting Character Generator!</h3>
 				<p style="padding-left: 10%; padding-right: 10%;">If you want to talk about the Character Generator - stories, bugs, suggestions, questions etc. - or just say hi or thank you, I've made <a href="https://www.reddit.com/r/dndnext/comments/7yeimv/modern_character_generation_tool_and_discussion/">this thread on Reddit's dndnext subreddit.</a></p>
-				<p style="padding-left: 10%; padding-right: 10%;">Feeling downright jubilant and want to throw me a bone at some point, <a href="https://www.amazon.com/ref=as_li_ss_tl?ie=UTF8&linkCode=ll2&tag=eupolemos-20&linkId=957eb2b54fe27a0b98110d0a08af29b7">use this link when you buy something at Amazon</a> and I'll get free money - which is incidentally the <b>best</b> kind of money ever invented!!</p>
+				<p style="padding-left: 10%; padding-right: 10%;">Feeling downright jubilant and want to throw me a bone at some point, <a href="https://www.amazon.com/ref=as_li_ss_tl?ie=UTF8&linkCode=ll2&tag=eupolemos-20&linkId=957eb2b54fe27a0b98110d0a08af29b7" rel="nofollow">use this link when you buy something at Amazon</a> and I'll get free money - which is incidentally the <b>best</b> kind of money ever invented!!</p>
 			</div>
 		</div>
-		<!-- <div id="pickTableToggle"> -->
-			<div class="text" id="pick">
-				<h2>Pick A Race</h2>
-				<p>As Socucius Ergalla says; <em>"There are a few ways we can do this, and the choice - is - yours"</em>.</p>
-				<ul>
-					<li>Perhaps you want a character with as high main ability scores as possible</li>
-					<li>Maybe you want a character with as good average modifiers as possible</li>
-					<li>Could be you feel that playing a certain race completely outshines any ability score advantages you might get or has benefits this tool hasn't catched on to</li>
-				</ul>
-				<div class="item--gone" id="pickToggle">
-					<p>Whichever may be the case, here are some suggestions:</p>
-					
-					<p><span id="specialCaseWis"></span></p>
-					
-					<p style="padding-left: 20px; padding-right: 20px; font-style: italic;">Your character's <span id="WISother"></span>best ability scores would benefit the most from choosing to be a <span id="sugHumanoid"></span><span id="sugHumanoid2"></span>. <br/>This would increase <span id="totBoth"><em>only </em>one of your two best modifiers by +1 and place it</span> at +<span id="maxHumanoid"></span>.</p>
-					
-					<p>However, there is also the "Humanity" races to consider - Human, Variant Human and Half Elf - where some ability scores are raised just enough to improve the modifiers (raising an odd ability score to an even increases the modifier by one).</p>
-					
-					<p style="padding-left: 20px; padding-right: 20px; font-style: italic;"><span id="poorChoice">Choosing to be a <span id="sugHumanity"></span> could increase your total modifiers by +<span id="totHumanity"></span> and place your best ability at a +<span id="maxHumanity"></span> modifier.</span></p>
-					<br>
-				</div>
-				<button type="button" id="pickButton" class="button--hidden" onclick="getChoice()">Pick Your Race</button>
+		
+		<!-- Info on picking a race.  -->
+		<div class="text" id="pick">
+			<h2>Pick A Race</h2>
+			<p>As Socucius Ergalla says; <em>"There are a few ways we can do this, and the choice - is - yours"</em>.</p>
+			<ul>
+				<li>Perhaps you want a character with as high main ability scores as possible</li>
+				<li>Maybe you want a character with as good average modifiers as possible</li>
+				<li>Could be you feel that playing a certain race completely outshines any ability score advantages you might get or has benefits this tool hasn't catched on to</li>
+			</ul>
+			
+			<!-- Info becomming visible when it is actually time to make the choice -->
+			<div class="item--gone" id="pickToggle">
+				<p>Whichever may be the case, here are some suggestions:</p>
+				
+				<span id="specialCaseWis"></span>
+				
+				<p style="padding-left: 20px; padding-right: 20px; font-style: italic;">Your character's <span id="WISother"></span>best ability scores would benefit the most from choosing to be a <span id="sugHumanoid"></span><span id="sugHumanoid2"></span>. <br/>This would increase <span id="totBoth"><em>only </em>one of your two best modifiers by +1 and place it</span> at +<span id="maxHumanoid"></span>.</p>
+				
+				<p>However, there is also the "Humanity" races to consider - Human, Variant Human and Half Elf - where some ability scores are raised just enough to improve the modifiers (raising an odd ability score to an even increases the modifier by one).</p>
+				
+				<p style="padding-left: 20px; padding-right: 20px; font-style: italic;"><span id="poorChoice">Choosing to be a <span id="sugHumanity"></span> could increase your total modifiers by +<span id="totHumanity"></span> and place your best ability at a +<span id="maxHumanity"></span> modifier.</span></p>
 				<br>
 			</div>
+			<button type="button" id="pickButton" class="button--hidden" onclick="getChoice()">Pick Your Race</button>
+			<br><br>
+		</div>
+		
+		<!-- This div is for the race-table itself. It is created through JS (the function "makeList()"), using array-contents for the grid cells -->
+		<div class="text table__1" id="table__1">
+		</div>
+	</div>
+	
+	<!-- Ghost divs for taking measurements of dynamic, animated content -->
+	<div class="main ghost" id="main__2">
+		<div class="text ghost" id="ghost">
 			
-			<!-- This div is for the race-table. It is created through JS (the function "makeList()"), using array-contents for the grid cells -->
-			<div class="text table__1" id="table__1">
-			</div>
-		<!-- </div> -->
+		</div>
 	</div>
 	
 	<script type="text/javascript" src="cg_script.js"></script>
-
 </body>
 
 </html>
