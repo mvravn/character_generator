@@ -245,7 +245,7 @@ function revealAbilities() {
 	
 	
 	for (let i = 0; i < 7; i++) {
-		let delay = i*1100;
+		let delay = i*110*2;
 		var revealTicker = setTimeout(doReveal, delay);
 		revealTicker;
 	}
@@ -1140,14 +1140,11 @@ function animateReveal(IDToAdd) {
 	
 	// Display a hidden ghost div in main__2 to get the animation height from
 	let divToBeCopied = document.getElementById(IDToAdd);
-	console.log(divToBeCopied);
 	let ghostDiv = document.getElementById("ghost");
-	console.log(ghostDiv);
 	ghostDiv.innerHTML = divToBeCopied.innerHTML;
 	
 	// Get div height to add from the ghost element
 	let addHeight = document.getElementById("ghost").clientHeight; // Height to be animated to
-	console.log("addHeight height:", addHeight);
 	
 	// Animate the height addition by expanding div
 	document.documentElement.style.setProperty("--expandHeight", addHeight + "px");
@@ -1166,6 +1163,7 @@ function animateReveal(IDToAdd) {
 		x.removeEventListener("animationend", fadeIn);
 	}
 }
+
 
 // Function for animating the addition of the non-animatable display:none property
 // Needed a removeEventListener above to not bug out - added down here too for good measure. Link:  https://www.google.dk/search?q=removeEventListener&oq=removeEventListener&aqs=chrome..69i57j0l5.1382j0j8&sourceid=chrome&ie=UTF-8
@@ -1188,11 +1186,14 @@ function animateCollapse(IDToRemove) {
 }
 
 
+// Shows the about page on top of the rest of the page
 function showAbout() {
 	document.getElementById("about__element").classList.remove("item--hidden");
 	document.getElementById("about__element").classList.remove("item--gone");
 }
 
+
+// Removes the about page
 function removeAbout() {
 	document.getElementById("about__element").className = "main__3 item--hidden item--gone";
 }

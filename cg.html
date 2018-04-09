@@ -9,6 +9,7 @@
 	<meta name="description" content="This is Eupolemos' Inspiring, Balanced and Interesting Character Generator for D&D 5e - it seeks to avoid pitfalls for new and old players, inspire you to make unexpected characters and keep your game engaging for as long as possible." />
 	<meta name="keywords" content="character generator, character builder, character creation, D&D, dungeons & dragons, 5e, inspiration, balanced, interesting, tool, NPC, Eupolemos, Eupo" />
 	<meta name="author" content="Eupolemos" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Inspiring and Balanced Character Generator for D&D 5e</title>
 
@@ -20,7 +21,7 @@
 </head>
 
 <body>
-	<!-- style="font-size: 550%;" -->
+	<!-- Single Button -->
 	<div id="about__button" alt="about-page" onClick="showAbout()">
 		?
 	</div>
@@ -65,7 +66,7 @@
 		<p>Q: Can I get a character with an Ability Score of 17 or 18?</p>
 		<p>A: Yes, absolutely. They are rare, however. If the character rolled does not also have a 15 or 16 as an ability score, it will get re-rolled out of existence. If 17 and 18 counted as a positive criteria along with 16 and 15 for keeping a character, they'd be much too common. Now they are rare, balanced and precious - just like they should be!</p><br>
 		<p>Q: Why is the generator so infuriatingly slow?</p>
-		<p>A: The point of this generator is to make the player look at the stats and think <b>hard</b> about what character can be made with them - and NOT to simply obey the player's preconceived idea of a character. Point-buy or house-rules will do that quite well, and this generator would be a waste of time.</p>
+		<p>A: Well, presentation is a part of design. The point of this generator is to make the player look at the stats and think <b>hard</b> about what character can be made with them - and NOT to simply obey the player's preconceived idea of a character. Point-buy or house-rules will do that quite well, and this generator would be a waste of time.</p>
 		<p>If characters could be re-rolled instantaneously, we'd be lured to click away like a slot-machine addict rather than use our brain and imagination. Also, it gives the reveal more gravitas - this will be the skin of your fantasy's avatar for the next hundreds of hours being. Give it some respect.</p><br>
 		<p>Q: Where's my Drow!?</p>
 		<p>A: Drizzt is... Ah, I mean Drow are of course super cool, but this tool tries to keep things simple and not suggest a race that has disadvantages in daylight. But much more importantly, since Drow have the exact same stats as Lightfoot Halflings, it would be a mess to code. <br/>If you want a Drow, just pick the Lightfoot Halfling.</p><br>
@@ -105,17 +106,17 @@
 			<div class="table__0">
 				<div class="data table__column__0 table__row__0">Ability</div><div class="data table__column__1 table__row__0">Score</div><div class="data table__column__2 table__row__0">Modifier</div><div class="data table__column__3 table__row__0">&nbsp;</div>
 				
-				<div class="data table__column__0 table__row__1">STR:&nbsp;</div><div class="data table__column__1 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__1 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__1">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__0" type="checkbox" name="swap" /></div>
+				<div class="data table__column__0 table__row__1">STR:</div><div class="data table__column__1 table__row__1 data--hidden"></div><div class="data table__column__2 table__row__1 data--hidden"></div><div class="data table__column__3 table__row__1"><input class="checkbox checkbox--hidden" id="checkbox__0" type="checkbox" name="swap" /></div>
 				
-				<div class="data table__column__0 table__row__2">DEX:&nbsp;</div><div class="data table__column__1 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__2 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__2">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__1" type="checkbox" name="swap" /></div>
+				<div class="data table__column__0 table__row__2">DEX:</div><div class="data table__column__1 table__row__2 data--hidden"></div><div class="data table__column__2 table__row__2 data--hidden"></div><div class="data table__column__3 table__row__2"><input class="checkbox checkbox--hidden" id="checkbox__1" type="checkbox" name="swap" /></div>
 				
-				<div class="data table__column__0 table__row__3">CON:&nbsp;</div><div class="data table__column__1 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__3 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__3">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__2" type="checkbox" name="swap" /></div>
+				<div class="data table__column__0 table__row__3">CON:</div><div class="data table__column__1 table__row__3 data--hidden"></div><div class="data table__column__2 table__row__3 data--hidden"></div><div class="data table__column__3 table__row__3"><input class="checkbox checkbox--hidden" id="checkbox__2" type="checkbox" name="swap" /></div>
 				
-				<div class="data table__column__0 table__row__4">INT:&nbsp;</div><div class="data table__column__1 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__4 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__4">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__3" type="checkbox" name="swap" /></div>
+				<div class="data table__column__0 table__row__4">INT:</div><div class="data table__column__1 table__row__4 data--hidden"></div><div class="data table__column__2 table__row__4 data--hidden"></div><div class="data table__column__3 table__row__4"><input class="checkbox checkbox--hidden" id="checkbox__3" type="checkbox" name="swap" /></div>
 				
-				<div class="data table__column__0 table__row__5">WIS:&nbsp;</div><div class="data table__column__1 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__5 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__5">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__4" type="checkbox" name="swap" /></div>
+				<div class="data table__column__0 table__row__5">WIS:</div><div class="data table__column__1 table__row__5 data--hidden"></div><div class="data table__column__2 table__row__5 data--hidden"></div><div class="data table__column__3 table__row__5"><input class="checkbox checkbox--hidden" id="checkbox__4" type="checkbox" name="swap" /></div>
 				
-				<div class="data table__column__0 table__row__6">CHA:&nbsp;</div><div class="data table__column__1 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__2 table__row__6 data--hidden">&nbsp;</div><div class="data table__column__3 table__row__6">&nbsp;<input class="checkbox checkbox--hidden" id="checkbox__5" type="checkbox" name="swap" /></div>
+				<div class="data table__column__0 table__row__6">CHA:</div><div class="data table__column__1 table__row__6 data--hidden"></div><div class="data table__column__2 table__row__6 data--hidden"></div><div class="data table__column__3 table__row__6"><input class="checkbox checkbox--hidden" id="checkbox__5" type="checkbox" name="swap" /></div>
 			</div>	
 		</div>
 		
@@ -180,7 +181,6 @@
 			</div>
 			<!-- A thank you and read further div -->
 			<div class="text item--gone" id="thanks">
-				<br>
 				<h3 style="padding-left: 10%; padding-right: 10%;">Thank you for using the Inspiring, Balanced and Interesting Character Generator!</h3>
 				<p style="padding-left: 10%; padding-right: 10%;">If you want to talk about the Character Generator - stories, bugs, suggestions, questions etc. - or just say hi or thank you, I've made <a href="https://www.reddit.com/r/dndnext/comments/7yeimv/modern_character_generation_tool_and_discussion/">this thread on Reddit's dndnext subreddit.</a></p>
 				<p style="padding-left: 10%; padding-right: 10%;">Feeling downright jubilant and want to throw me a bone at some point, <a href="https://www.amazon.com/ref=as_li_ss_tl?ie=UTF8&linkCode=ll2&tag=eupolemos-20&linkId=957eb2b54fe27a0b98110d0a08af29b7" rel="nofollow">use this link when you buy something at Amazon</a> and I'll get free money - which is incidentally the <b>best</b> kind of money ever invented!!</p>

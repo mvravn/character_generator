@@ -10,8 +10,8 @@
 	--color1: #eeeeee; /* main theme text color. Old tries: #FFFFF6; #fefef5; #eeeeee; */
 	--color2: #970203; /* #cc0000; */
 	--font:  'Quicksand', sans-serif; /* previously Quicksand, Atma, Cormorant, Arvo but a bit too much like comic sans and doesn't send a professional feel, even though I like it tacky for the site - needs link update in html*/
-	--expandHeight: 0px; /* used for dynamically expanding divs */
-	--collapseHeight: 0px; /* used for dynamically collapsing divs */
+	--expandHeight: 0px; /* used for dynamically expanding divs, values changed by JS */
+	--collapseHeight: 0px; /* used for dynamically collapsing divs, values changed by JS */
 	--quickReveal: 0.7s; /* used for transitions and animations */
 	--slowReveal: 1.4s; /* used for transitions and animations */
 	--headline: 'Amaranth', sans-serif;
@@ -40,7 +40,8 @@ body {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	font-family: var(--font);
-	background-image: url(http://mvravn.dk/dice75.jpg);
+	background-image: url(http://mvravn.dk/dice75.jpg); */
+	background: #272D35;
 	background-size: cover;
 	background-attachment: fixed;
 	
@@ -88,6 +89,8 @@ button {
 	outline: none;
 	margin: 0 auto;
 	font-family: var(--headline);
+	margin-top: 20px;
+	margin-bottom: 40px;
 }
 
 button:hover {
@@ -129,12 +132,12 @@ h4 {
 	text-align: center;
 	font-family: var(--headline);
 }
-
+/*
 big {
 	font-size: larger;
 	font-family: var(--headline);
 }
-
+*/
 li {
 	margin: 10px 0;
 }
@@ -148,7 +151,8 @@ li {
 
 
 
-			/* ===== IDs IN CHRONOLOGICAL ORDER - USED FOR GRID PLACEMENT PURPOSES ===== */
+						/* ===== IDs IN CHRONOLOGICAL ORDER ===== */
+	/* Used for grid placement purposes and individual placement adjustments with margins and padding */
 						/* Most have been filled in, whether used or not */
 						/* ============================================= */
 						
@@ -206,9 +210,17 @@ li {
 		font-size: 400%;
 	}
 	
-	
 	body {
-		grid-template-columns: 0fr 8fr 0fr;
+		grid-template-columns: 3px 8fr 3px;
+		background-image: none !important;
+		background-size: none;
+		background-attachment: none;
+		background: black;
+	}
+	
+	.main__0, .main__1, .main__2, .main__3 {
+		margin: 0px;
+		padding 10px;
 	}
 }
 
@@ -227,12 +239,36 @@ li {
 	margin-bottom: 10px;
 	margin-right: 10%;
 	margin-left: 10%;
+	
 	padding: 100px;
 	background: rgba(0, 0, 0, 0.95);
 	border-style: ridge;
 	border-radius: 10px;
 	border-color: #FFFFF6;
 	z-index: 1;
+}
+
+@media screen and (max-width: 800px) {
+	/* just softens the worst offenders on mobile */
+	#about__button {
+		grid-column-start: 2;
+		grid-row-start: 1;
+		justify-self: right;
+		z-index: 2;
+		margin: 8px;
+		width: 70px;
+		height: 70px;
+		font-size: 400%;
+	}
+	
+	body {
+		grid-template-columns: 3px 8fr 3px;
+	}
+	
+	.main__0, .main__1, .main__2, .main__3 {
+		margin: 10%;
+		padding: 20px;
+	}
 }
 
 #about__element {
@@ -322,6 +358,7 @@ li {
 	/* holds the super raw text for copying */
 	grid-column: 1/4;
 	grid-row-start: 3;
+	padding-top: 40px;
 }
 
 #pick {
@@ -475,7 +512,7 @@ li {
 	
 	/* grid-properties of content */
 	display: grid;
-	grid-template-columns: repeat(3, 4fr) 1fr;
+	grid-template-columns: repeat(3, 4fr) minmax(5px, 1fr);
 	grid-template-rows: repeat(7, 1fr);
 	grid-gap: 5px;
 }
@@ -507,6 +544,10 @@ li {
 	transition: color var(--slowReveal);
 }
 
+.table__column__3 {
+	align-self: center;
+}
+
 .data--reveal {
 	/* data fields to be revealed, also holds two extra elements via span for the Totals */
 	color: var(--color1);
@@ -514,20 +555,21 @@ li {
 
 @keyframes numberSlide {
 	/* makes numbers slide in */
-	0% {
-		transform: rotateY(90deg);
+	from {
+		transform: rotateY(89deg); /* rotate 90deg bugged out Edge and Firefox */
 	}
 	
-	100% {
+	to {
 		transform: rotateY(0deg);
 	}
 }
 
 .data--reveal--slide {
-	/* data fields to be revealed, also holds two extra elements via span for the Totals */
-	animation: numberSlide var(--slowReveal);
-	animation-timing-function: cubic-bezier(0.57, 1.28, 0.58, 1);
+	/* data fields to be revealed, also holds two extra elements via span for the Totals var(--slowReveal) cubic-bezier(0.57, 1.28, 0.58, 1)*/
+	animation: numberSlide 1.4s;
+	animation-timing-function: ease-in-out;
 	animation-fill-mode: forwards;
+	perspective: 100px;
 	/*perspective: 100px; -- not needed, comment kept for review purposes */
 }
 
