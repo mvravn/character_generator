@@ -27,6 +27,8 @@
 	</div>
 	
 	<div class="main__3 item--hidden item--gone" id="about__element" onClick="removeAbout()">
+	
+	<p id="version">version 1.1.1</p>
 		
 		<h3>What is this?</h3>
 		<p>This is a Character Generator for Dungeons & Dragons 5th Edition, aimed at generating characters that will keep the player and group happily engaged for as long as possible.</p>
@@ -94,11 +96,13 @@
 			
 			<h4>For Dungeons & Dragons 5e!</h4>
 			
-			<p id="version">version 1.1.1</p>
-			<button type="button" id="rollButton" onclick="rollAbilities();">Roll The Dice!</button>
-			<button type="button" id="swapButton" class="button--gone" onclick="swapRequest(); charAna();">Swap Two</button>
-			<button type="button" id="addButton" onclick="addRequest()" class="button--gone">Raise Two By One</button>
-			<br>
+			<!---->
+			<div class="text" id="button1">
+				<button type="button" id="rollButton" onclick="rollAbilities();">Roll The Dice!</button>
+				<button type="button" id="swapButton" class="button--gone" onclick="swapRequest(); charAna();">Swap Two</button>
+				<button type="button" id="addButton" onclick="addRequest()" class="button--gone">Raise Two By One</button>
+				<br>
+			</div>
 		</div>
 		
 		<!-- table for Abilities, Ability Score, Modifier and Checkboxes | all done in grid style to keep the complexity low -->
@@ -210,8 +214,10 @@
 				<p style="padding-left: 20px; padding-right: 20px; font-style: italic;"><span id="poorChoice">Choosing to be a <span id="sugHumanity"></span> could increase your total modifiers by +<span id="totHumanity"></span> and place your best ability at a +<span id="maxHumanity"></span> modifier.</span></p>
 				<br>
 			</div>
-			<button type="button" id="pickButton" class="button--hidden" onclick="getChoice()">Pick Your Race</button>
-			<br><br>
+			<div class="text item--gone" id="button2">
+				<button type="button" id="pickButton" class="button--hidden" onclick="getChoice()">Pick Your Race</button>
+				<br><br>
+			</div>
 		</div>
 		
 		<!-- This div is for the race-table itself. It is created through JS (the function "makeList()"), using array-contents for the grid cells -->

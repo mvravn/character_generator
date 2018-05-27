@@ -7,14 +7,15 @@
 
 :root {
 	/* Theme suggestions: http://www.color-hex.com/color-palette/56551 http://www.color-hex.com/color-palette/56837 http://www.color-hex.com/color-palette/55874 */
-	--color1: #eeeeee; /* main theme text color. Old tries: #FFFFF6; #fefef5; #eeeeee; */
-	--color2: #970203; /* #cc0000; */
+	--color1: #fff; /* main theme text color. Old tries: #FFFFF6; #fefef5; #eeeeee; */
+	--color2: #c94646; /* #cc0000; #970203*/
 	--font:  'Quicksand', sans-serif; /* previously Quicksand, Atma, Cormorant, Arvo but a bit too much like comic sans and doesn't send a professional feel, even though I like it tacky for the site - needs link update in html*/
 	--expandHeight: 0px; /* used for dynamically expanding divs, values changed by JS */
 	--collapseHeight: 0px; /* used for dynamically collapsing divs, values changed by JS */
 	--quickReveal: 0.7s; /* used for transitions and animations */
 	--slowReveal: 1.4s; /* used for transitions and animations */
 	--headline: 'Amaranth', sans-serif;
+	--seethroughTeint: rgba(0,0,0,0.4); /* used in .main, line ca. 460 - and about-button line 192 */
 }
 /*Example of use = something: var(--slowReveal); */
 
@@ -40,13 +41,20 @@ body {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	font-family: var(--font);
-	background-image: url(http://mvravn.dk/dice75.jpg); */
-	background: #272D35;
+	
+	-background-image: url(http://mvravn.dk/dice75.jpg); 
+	background-image: url(http://mvravn.dk/blank_page_by_mike_tinnion.jpg);
+	-background-image: url(http://mvravn.dk/bp2000.jpg);
+	-background-position: center center;
+	-background-position: 5% 50%; 
+	background-position : calc(100% + 0px) calc(25% - 10px);
+	
+	-background: red; 
 	background-size: cover;
 	background-attachment: fixed;
 	
 	color: var(--color1);
-	font-size: 14px; 
+	font-size: 16px; 
 }
 
 a {
@@ -81,7 +89,7 @@ button {
 	width: 150px;
 	height: 60px;
 	color: black;
-	font-weight: bold;
+	-font-weight: bold;
 	border-radius: 10px;
 	border-color: var(--color1);
 	transition: background-color var(--quickReveal), border-color var(--quickReveal), font-size var(--quickReveal);
@@ -91,6 +99,8 @@ button {
 	font-family: var(--headline);
 	margin-top: 20px;
 	margin-bottom: 40px;
+	z-index: 1;
+	-font-size: 85%;
 }
 
 button:hover {
@@ -98,7 +108,7 @@ button:hover {
 	background-color: var(--color2);
 	border-color: var(--color2);
 	cursor: pointer;
-	font-size: 110%;
+	font-size: 92%;
 	transition: font-size var(--quickReveal), background-color var(--quickReveal), border-color var(--quickReveal);
 }
 
@@ -186,10 +196,11 @@ li {
 	border-color: #FFFFF6;
 	width: 100px;
 	height: 100px;
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(0,0,0,0.6);
 	text-align: center;
 	transition: color var(--quickReveal);
-	font-size: 550%;
+	-font-size: 550%;
+	font-size: 480%;
 	font-family: var(--headline);
 }
 
@@ -241,7 +252,7 @@ li {
 	margin-left: 10%;
 	
 	padding: 100px;
-	background: rgba(0, 0, 0, 0.95);
+	background: rgba(0, 0, 0, 0.75);
 	border-style: ridge;
 	border-radius: 10px;
 	border-color: #FFFFF6;
@@ -272,8 +283,8 @@ li {
 }
 
 #about__element {
-	
-	
+	z-index: 2;
+	background: rgba(0,0,0,0.9);
 }
 
 #button__slot__one {
@@ -455,10 +466,11 @@ li {
 .main {
 	/* makes main divs with borders for a nice frame of user focus */
 	grid-column-start: 2;
-	background: rgba(0, 0, 0, 0.8);
+	background: var(--seethroughTeint);
 	border-style: ridge;
 	border-radius: 10px;
 	border-color: #FFFFF6;
+	box-shadow: 7px 7px 20px 0px rgba(0, 0, 0, 0.4);
 	
 	/* grid-properties of content */
 	display: grid;

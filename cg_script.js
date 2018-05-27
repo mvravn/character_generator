@@ -1,5 +1,19 @@
 ﻿// Console tips: https://www.youtube.com/watch?v=xkzDaKwinA8
 
+/*
+Transformations
+1) Roll the dice; info expands, button1 changes
+2) Swap; info collapses, suggestions expand, button 1 disappears, button 2 is revealed
+2b) Human Variant or ½E; button 1 reveals, button 2 disappears, scrolls up
+3) Pics disappear, button 1 disappears, copy-sheet appears
+
+Missing
+- Hide unused buttons
+- Proper delay when showing copy-sheet
+- Easy way to adjust all text sizes
+
+*/
+
 "use strict";
 
 // Global Variables
@@ -243,9 +257,8 @@ function revealAbilities() {
 		}
 	}
 	
-	
 	for (let i = 0; i < 7; i++) {
-		let delay = i*110*2;
+		let delay = i*900*2;
 		var revealTicker = setTimeout(doReveal, delay);
 		revealTicker;
 	}
@@ -311,6 +324,10 @@ function swapRequest() {
 	// Toggle buttons and elements, reveal radio buttons
 	document.getElementById("swapButton").className = "button--hidden";
 	document.getElementById("pickButton").classList.remove("button--hidden");
+	setTimeout(animateReveal('button2'), 1500);
+	animateCollapse('button1');
+	
+	
 	let len = humanoids.length+3;
 	for (let i = 0; i < len; i++) {
 		document.getElementsByName("race")[i].classList.remove("data__1--hidden");
@@ -364,17 +381,19 @@ function swapRequest() {
 			else if (zeta == 3) {abilityScore.splice(3, 1, beta);}
 			else {abilityScore.splice(4, 1, beta);} 
 		}
-		//document.getElementById("plan").className += " item--gone";
+		/*
 		animateCollapse('plan');
-		//document.getElementById("pickToggle").classList.remove("item--gone");
 		animateReveal('pickToggle');
+		*/
+		colRev('plan', 'pickToggle')
 	}
 	
 	if (boxAmount === 0) {
-		//document.getElementById("plan").className += " item--gone"; 
+		/*
 		animateCollapse('plan');
-		//document.getElementById("pickToggle").classList.remove("item--gone");
 		animateReveal('pickToggle');
+		*/
+		colRev('plan', 'pickToggle')
 	}
 	
 	// calculateModifiers();
@@ -926,14 +945,22 @@ function getChoice() {
 		
 		// Toggle buttons and divs
 		document.getElementById("pickButton").className = "button--hidden";
+		/*
 		animateCollapse('pick');
 		animateCollapse('pickToggle');
+		*/
 		document.getElementById("table__1").className = "item--gone";
+		/*
 		animateCollapse('info');
 		
 		animateReveal('copy');
 		animateReveal('pre__i');
 		animateReveal('thanks');
+		*/
+		colRev('pick', 'copy');
+		colRev('pickToggle', 'pre__i');
+		colRev('info', 'thanks');
+		animateCollapse('button2');
 	}
 	
 	else if (raceChoice === 13) { // Human
@@ -959,17 +986,23 @@ function getChoice() {
 		
 		// Toggle buttons and divs
 		document.getElementById("pickButton").className = "button--hidden";
-		animateCollapse('pick');
-		animateCollapse('pickToggle');
+		//animateCollapse('pick');
+		//animateCollapse('pickToggle');
 		document.getElementById("table__1").className = "item--gone";
-		animateCollapse('info');
+		//animateCollapse('info');
 		
-		animateReveal('copy');
-		animateReveal('pre__i');
-		animateReveal('thanks');
+		//animateReveal('copy');
+		//animateReveal('pre__i');
+		//animateReveal('thanks');
+		
+		colRev('pick', 'copy');
+		colRev('pickToggle', 'pre__i');
+		colRev('info', 'thanks');
+		animateCollapse('button2');
 	}
 	
 	else if (raceChoice === 12) { // Variant Human
+		animateReveal('button1');
 		
 		// Show all checkboxes again
 		let y = document.getElementsByClassName("checkbox");
@@ -985,10 +1018,14 @@ function getChoice() {
 		document.getElementById("pickButton").className = "button--hidden";
 		document.getElementById("swapButton").className = "button--gone";
 		animateCollapse('info');
+		animateCollapse('button2');
 	}
 	
 	else { // Half Elf
 		// As above, except don't show checkbox 5 and add 2 to abilityScore 5 (CHA) right away
+		
+		animateCollapse('button2');
+		animateReveal('button1');
 		
 		// Show all checkboxes except CHA
 		let y = document.getElementsByClassName("checkbox");
@@ -1029,13 +1066,18 @@ function scrollToTheTop() {
 // Adds Ability Scores as chosen if Variant Human or Half Elf is chosen
 function addRequest() {
 	
-	animateCollapse('pick');
-	animateCollapse('pickToggle');
+	//animateCollapse('pick');
+	//animateCollapse('pickToggle');
 	document.getElementById("table__1").className = "item--gone";
 	
-	animateReveal('copy');
-	animateReveal('pre__i');
+	//animateReveal('copy');
+	//animateReveal('pre__i');
 	animateReveal('thanks');
+	
+	colRev('pick', 'copy');
+	colRev('pickToggle', 'pre__i');
+	//colRev('info', 'thanks');
+	setTimeout(animateReveal('thanks'), 1500);
 		
 	// Check booleans of checkboxes
 	var zero = document.getElementById("checkbox__0").checked;
@@ -1058,6 +1100,7 @@ function addRequest() {
 		
 		// Toggle button
 		document.getElementById("addButton").className = "button--hidden";
+		animateCollapse('button1');
 		
 		for (let i = 0; i < 6; i++) {
 			var check = "checkbox__" + i;
@@ -1183,6 +1226,12 @@ function animateCollapse(IDToRemove) {
 		document.getElementById(IDToRemove).className += " item--collapse";
 		x.removeEventListener("transitionend", collapse);
 	}
+}
+
+// Combine collapse and reveal functions to get satisfying flow of animations
+function colRev(col, rev){
+	animateCollapse(col);
+	setTimeout(animateReveal(rev), 1500);
 }
 
 
