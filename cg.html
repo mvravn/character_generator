@@ -28,7 +28,7 @@
 	
 	<div class="main__3 item--hidden item--gone" id="about__element" onClick="removeAbout()">
 	
-	<p id="version">version 1.1.1</p>
+	<p id="version">version 1.1.2</p>
 		
 		<h3>What is this?</h3>
 		<p>This is a Character Generator for Dungeons & Dragons 5th Edition, aimed at generating characters that will keep the player and group happily engaged for as long as possible.</p>
@@ -59,12 +59,12 @@
 		<p>Honestly, I (Eupolemos) dislike these online character generators. I like rolling for characters. For me the 3d6 is part of the D&D magic - it seems a misunderstanding to take that away.</p>
 		<p>But the lack of balanced characters <b>can</b> be a real problem as a DM, and equally as much for fellow players. If somebody can't help themselves and happen to fudge the dice a little bit, they don't mean to be wangrods; they just want to live out a fantasy! And dice are fickle; perverse even. You've seen it, you <b>know</b> what I'm talking about!</p>
 		<p>Following the D&D communities on places like Reddit, it seems to me like there's a shift towards point-buy (PHB p. 13), to keep the basics even between players. In my opinion, that holds maladies as well, with knowledge of optimal distributions for races and classes, always getting what you want rather than let the rolls inspire etc.</p> 
-		<p>Well, between pointbuy and rolling with a hundred house-rules, I thought some might find this to be a good third alternative.</p>
+		<p>Well, between pointbuy and rolling with a hundred house-rules, I thought some of you might find this to be a good third alternative.</p>
 		<br/><br>
 		
 		<h3>F.A.Q.</h3>
 		<p>Q: How does the generator work?</p>
-		<p>A: The generator simulates a roll of 3d6 for each Ability Score. It then matches the complete character with a set of criteria. If the character fails to meet these, it will get re-rolled without you noticing it. You get to see the number of re-rolls, however.</p><br>
+		<p>A: The generator simulates a roll of 3d6 for each Ability Score. It then matches the complete character with a set of criteria. If the character fails to meet these, it will get re-rolled without you noticing it.</p><br>
 		<p>Q: Can I get a character with an Ability Score of 17 or 18?</p>
 		<p>A: Yes, absolutely. They are rare, however. If the character rolled does not also have a 15 or 16 as an ability score, it will get re-rolled out of existence. If 17 and 18 counted as a positive criteria along with 16 and 15 for keeping a character, they'd be much too common. Now they are rare, balanced and precious - just like they should be!</p><br>
 		<p>Q: Why is the generator so infuriatingly slow?</p>
@@ -96,7 +96,6 @@
 			
 			<h4>For Dungeons & Dragons 5e!</h4>
 			
-			<!---->
 			<div class="text" id="button1">
 				<button type="button" id="rollButton" onclick="rollAbilities();">Roll The Dice!</button>
 				<button type="button" id="swapButton" class="button--gone" onclick="swapRequest(); charAna();">Swap Two</button>
@@ -128,14 +127,15 @@
 		<div class="text" id="info">
 			<p>Ability Score Total: <span id="AST" class="data--hidden">&nbsp;</span><br><br>Modifier Total: <span id="MT" class="data--hidden">&nbsp;</span><br><br></p>
 			
-			<h3>List Of The Most Important Criteria</h3>
+			<div class="text" id="infolist">
+				<h3>List Of The Most Important Criteria</h3>
 				<ul>
 					<li>The character rolled will have at least one Ability Score of 15 or 16</li>
 					<li>There will be no Ability Scores under 7, but least one with a negative Modifier</li>
 					<li>The character will have a Stat Total (i.e. all Ability Scores added) of anything between 72 and 75</li>
 					<li>The Ability Scores will have a limited number of duplicates - no more than a single pair and no three alike</li>
 				</ul>
-			
+			</div>
 		</div>
 		
 		<!-- Advice on planning ahead when making important choices -->
@@ -203,7 +203,7 @@
 			
 			<!-- Info becomming visible when it is actually time to make the choice -->
 			<div class="item--gone" id="pickToggle">
-				<p>Whichever may be the case, here are some suggestions:</p>
+				<p>Whichever may be the case, here are some tailored suggestions:</p>
 				
 				<span id="specialCaseWis"></span>
 				

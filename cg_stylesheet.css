@@ -7,15 +7,17 @@
 
 :root {
 	/* Theme suggestions: http://www.color-hex.com/color-palette/56551 http://www.color-hex.com/color-palette/56837 http://www.color-hex.com/color-palette/55874 */
-	--color1: #fff; /* main theme text color. Old tries: #FFFFF6; #fefef5; #eeeeee; */
-	--color2: #c94646; /* #cc0000; #970203*/
+	--color1: rgba(0,0,0,0.85); /* main theme text color. Old tries: #FFFFF6; #fefef5; #eeeeee; */
+	--color2: #c94646; /* #cc0000; #970203 #B05D28 #c94646 http://learninginbloom.com/wp-content/uploads/2017/10/mike-tinnion-327565.jpg https://html-color-codes.info/colors-from-image/# */
+	--color3: white; /* button default */
 	--font:  'Quicksand', sans-serif; /* previously Quicksand, Atma, Cormorant, Arvo but a bit too much like comic sans and doesn't send a professional feel, even though I like it tacky for the site - needs link update in html*/
 	--expandHeight: 0px; /* used for dynamically expanding divs, values changed by JS */
 	--collapseHeight: 0px; /* used for dynamically collapsing divs, values changed by JS */
 	--quickReveal: 0.7s; /* used for transitions and animations */
 	--slowReveal: 1.4s; /* used for transitions and animations */
 	--headline: 'Amaranth', sans-serif;
-	--seethroughTeint: rgba(0,0,0,0.4); /* used in .main, line ca. 460 - and about-button line 192 */
+	--seethroughTeint: rgba(255,255,255,0.8); /* used in .main, line ca. 460 - and about-button line 192 */
+	--seethroughTeint2: rgba(255,255,255,0.8);
 }
 /*Example of use = something: var(--slowReveal); */
 
@@ -82,6 +84,10 @@ pre {
 	padding-bottom: 15px;
 	font-size: 14px;
 	margin: 0 auto; /* this property is needed for this super old-school element */
+	border-style: ridge;
+	border-radius: 10px;
+	border-color: #FFFFF6;
+	box-shadow: 7px 7px 20px 0px rgba(0, 0, 0, 0.4);
 }
 
 button {
@@ -93,7 +99,7 @@ button {
 	border-radius: 10px;
 	border-color: var(--color1);
 	transition: background-color var(--quickReveal), border-color var(--quickReveal), font-size var(--quickReveal);
-	background-color: var(--color1);
+	background-color: var(--color3);
 	outline: none;
 	margin: 0 auto;
 	font-family: var(--headline);
@@ -106,10 +112,10 @@ button {
 button:hover {
 	/* makes all buttons equal, too */
 	background-color: var(--color2);
-	border-color: var(--color2);
+	border-color: var(--color1);
 	cursor: pointer;
 	font-size: 92%;
-	transition: font-size var(--quickReveal), background-color var(--quickReveal), border-color var(--quickReveal);
+	transition: font-size var(--slowReveal), background-color var(--slowReveal), border-color var(--slowReveal);
 }
 
 p {
@@ -133,6 +139,7 @@ h3 {
 	/* For each "step", otherwise the same as "big" */
 	font-size: larger;
 	font-family: var(--headline);
+	margin: 0 0;
 }
 
 h4 {
@@ -196,12 +203,14 @@ li {
 	border-color: #FFFFF6;
 	width: 100px;
 	height: 100px;
-	background: rgba(0,0,0,0.6);
+	background: var(--seethroughTeint2);
 	text-align: center;
 	transition: color var(--quickReveal);
 	-font-size: 550%;
 	font-size: 480%;
 	font-family: var(--headline);
+	
+	box-shadow: 7px 7px 20px 0px rgba(0, 0, 0, 1);
 }
 
 #about__button p {
@@ -223,15 +232,17 @@ li {
 	
 	body {
 		grid-template-columns: 3px 8fr 3px;
-		background-image: none !important;
-		background-size: none;
-		background-attachment: none;
-		background: black;
+		-background-image: none !important;
+		-background-size: none;
+		-background-attachment: none;
+		-background: darkgray;
+		height:100%;
+		background: linear-gradient(0deg, #fff, gainsboro 80%) no-repeat;
 	}
 	
 	.main__0, .main__1, .main__2, .main__3 {
-		margin: 0px;
-		padding 10px;
+		margin: 0;
+		padding: 10px;
 	}
 }
 
@@ -252,7 +263,7 @@ li {
 	margin-left: 10%;
 	
 	padding: 100px;
-	background: rgba(0, 0, 0, 0.75);
+	-background: rgba(255,255,255,0.6);
 	border-style: ridge;
 	border-radius: 10px;
 	border-color: #FFFFF6;
@@ -284,7 +295,7 @@ li {
 
 #about__element {
 	z-index: 2;
-	background: rgba(0,0,0,0.9);
+	background: rgba(255,255,255,0.9);
 }
 
 #button__slot__one {

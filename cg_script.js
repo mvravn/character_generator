@@ -8,9 +8,7 @@ Transformations
 3) Pics disappear, button 1 disappears, copy-sheet appears
 
 Missing
-- Hide unused buttons
-- Proper delay when showing copy-sheet
-- Easy way to adjust all text sizes
+- Proper delay when showing copy-sheet. It's requires some tinkering since two things happen at once; something is removed and something is added.
 
 */
 
@@ -289,7 +287,8 @@ function revealAbilities() {
 			document.getElementById("AST").className += " data--reveal data--reveal--pop";
 			document.getElementById("MT").className += " data--reveal data--reveal--pop";
 			// document.getElementById("plan").classList.remove("item--gone");
-			animateReveal('plan'); // Reveals the plan Div
+			animateCollapse('infolist');
+			setTimeout(animateReveal('plan'), 1500); // Reveals the plan Div
 		}
 	}
 }
@@ -385,7 +384,7 @@ function swapRequest() {
 		animateCollapse('plan');
 		animateReveal('pickToggle');
 		*/
-		colRev('plan', 'pickToggle')
+		colRev('plan', 'pickToggle');
 	}
 	
 	if (boxAmount === 0) {
@@ -393,7 +392,7 @@ function swapRequest() {
 		animateCollapse('plan');
 		animateReveal('pickToggle');
 		*/
-		colRev('plan', 'pickToggle')
+		colRev('plan', 'pickToggle');
 	}
 	
 	// calculateModifiers();
@@ -960,7 +959,7 @@ function getChoice() {
 		colRev('pick', 'copy');
 		colRev('pickToggle', 'pre__i');
 		colRev('info', 'thanks');
-		animateCollapse('button2');
+		setTimeout(animateCollapse('button2'), 1500);
 	}
 	
 	else if (raceChoice === 13) { // Human
